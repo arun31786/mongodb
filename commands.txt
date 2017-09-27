@@ -1,0 +1,15 @@
+run database instance
+    mongod
+    mongod --dbpath data
+    mongod --config filename.config
+
+Connect to running mongodb instance
+    mongo
+
+db.stats();
+show dbs;
+use dbname;
+db.createCollection('colName');
+db.colName.insert({})
+db.colName.find()
+db.colName.find().pretty()

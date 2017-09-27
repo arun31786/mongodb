@@ -1,0 +1,96 @@
+
+
+Advantages of mongodb
+    Schema less
+    Structure
+    No Complex joins
+
+    Document Oriented Storage : 
+        Data is stored in the form of JSON style documents
+	Index on any attribute
+	Replication & High Availability
+	Auto-Sharding
+	Rich Queries
+	Fast In-Place Updates
+	Professional Support By MongoDB
+
+Download MongoDB
+Install MongoDB
+Check if installed
+    mongod --version
+
+    to run mongodb instance
+        mongod 
+            default dir c:/data/db
+        mongod --dbpath data
+
+
+    mongo.config
+        ## store data
+        dbpath = ./data
+        ## logs
+        logpath = ./mongo.log
+
+        ## port, default 27017
+        port = 27027
+
+
+
+Problem
+        Suppose a client needs a database design for his blog website 
+        and see the differences between RDBMS and MongoDB schema design. 
+        Website has the following requirements.
+            Every post has the unique title, description and url.
+            Every post can have one or more tags (java, node, database).
+            Every post has the name of its publisher and total number of likes.
+            Every Post have comments given by users along with their name, message, 
+                data-time and likes.
+            On each post there can be zero or more comments.
+
+
+
+			RDBMS
+			
+			|-------------------------||----------------------------||----------------------|
+				Post			    			Comments					tag_list
+			|-------------------------||----------------------------||----------------------|
+			|	id		  			  ||		comment_id			||			id			|
+			|	title		  		  ||		post_id				||			post_id		|
+			|	description			  ||		by_user				||			tag			|
+			|	url		  			  ||		message				||						|
+			|	likes		  		  ||		data_time			||						|
+			|	post_by		  		  ||		likes				||						|
+			|-------------------------||----------------------------||----------------------|
+
+
+			MongoDB schema design
+			
+				{
+				   title: "Install mongodb", 
+				   description: "Mongodb is nosql database",
+				   by: "Arun",
+				   url: "https://www.mongodb.com/download-center?ct=false#community",
+				   tags: ["javascript", "database"],
+				   likes: 12, 
+				   comments: [	
+				      {
+				         user:'Rajeev',
+				         message: "Nice tutorial",
+				         dateCreated: Date.now(),
+				         like: 18,
+                         replies: [{
+                             user:'Arun',
+                            message: "Thanx",
+                            dateCreated: Date.now(),
+                            like: 0
+                         }] 
+				      },
+				      {
+				         user:'Praveen',
+				         message: "How to use sharding",
+				         dateCreated: Date.now(),
+				         like: 5
+				      }
+				   ]
+				}
+
