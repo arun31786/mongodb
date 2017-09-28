@@ -8,11 +8,13 @@ Advantages of mongodb
     Document Oriented Storage : 
         Data is stored in the form of JSON style documents
 	Index on any attribute
-	Replication & High Availability
-	Auto-Sharding
 	Rich Queries
 	Fast In-Place Updates
+	Replication & High Availability
+	Auto-Sharding
 	Professional Support By MongoDB
+
+https://db-engines.com/en/ranking
 
 Download MongoDB
 Install MongoDB
@@ -94,3 +96,26 @@ Problem
 				   ]
 				}
 
+
+Day 2
+------
+
+insert vs save
+	without _id both will insert new data with _id
+	with _id
+		insert: will create document with given _id
+		save: will make change in document where _id === given _id
+
+	conditions
+		<, >, equals
+
+
+bookCol.insert({ auther: "Arun", bookName : "NodeJs", age : 32, twitter: "arunkumar", email: "arun@gmail.com", availableIn: [ {city: "New Delhi"}, {city: "Hyderabad"}]});
+bookCol.insert({ auther: "Mark", bookName : "AngularJs", age : 24, twitter: "mark22", email: "mark@outlook.com", availableIn: [ {city: "New Delhi"}, {city: "Hyderabad"}]});
+bookCol.insert({ auther: "Carl", bookName : "EmberJs", age : 72, twitter: "carl.carl", email: "carl@ymail.com", availableIn: [ {city: "Tokyo"}, {city: "Mumbai"}]});
+bookCol.insert({ auther: "Tom",  bookName : "ExtJs", age : 56, twitter: "tom.kim", email: "tom@gmail.com", availableIn: [ {city: "Pune"}, {city: "Kolkata"}]});
+ 
+
+CRUD
+	create, read, update, delete
+ 
