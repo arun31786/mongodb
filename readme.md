@@ -24,5 +24,7 @@ Remove
 Sort
 RoboMongo, MongoChef
 CRUD in client
+Import csv
+
 
 
