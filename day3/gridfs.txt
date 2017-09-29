@@ -1,0 +1,6 @@
+GridFs
+---------
+mongofiles -d GridDb put "./database/vdo.mp4"
+
+mongofiles -d GridDb list
+

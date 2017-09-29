@@ -1,0 +1,25 @@
+db.getCollection('person').find({}).count()
+
+db.getCollection('person').find({}).limit(10)
+
+db.getCollection('person').find({}).skip(10).limit(5)
+
+
+----------
+
+db.getCollection('person').find({})
+db.getCollection('person').find({}).count()
+
+db.getCollection('person').distinct("gender")
+
+db.getCollection('person').deleteOne({"gender":"Male"});
+db.getCollection('person').deleteMany({"gender":"Male"});
+
+db.getCollection('person').distinct("age")
+
+db.getCollection('person').remove({age:{$gt:50}}, {justOne: true})
+
+
+
+
+

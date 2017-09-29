@@ -1,0 +1,80 @@
+db.createCollection('student');
+
+db.getCollection('student').insert({
+    semester: 2,
+    grades: [
+        {
+            grade: 93,
+            mean: 74
+        },
+        {
+            grade: 84,
+            mean: 89
+        },
+        {
+            grade: 91,
+            mean: 86
+        }
+    ],
+    scores:[74, 89, 86]
+})
+db.getCollection('student').insert({
+    semester: 3,
+    grades: [
+        {
+            grade: 92,
+            mean: 71
+        },
+        {
+            grade: 82,
+            mean: 84
+        },
+        {
+            grade: 81,
+            mean: 91
+        }
+    ],
+    scores:[71, 84, 91]
+})
+db.getCollection('student').insert({
+    semester: 3,
+    grades: [
+        {
+            grade: 88,
+            mean: 71
+        },
+        {
+            grade: 69,
+            mean: 85
+        },
+        {
+            grade: 71,
+            mean: 71
+        }
+    ],
+    scores:[71, 85, 71]
+})
+
+------------
+
+db.getCollection('student').find({})
+
+db.student.find({scores: {$eq: 91}})
+
+db.student.find({"grades.mean": {$eq: 84}})
+
+db.student.update({}, {$push:{scores:55}}, {multi: true})
+db.student.update({}, {$addToSet:{scores:91}}, {multi: true})
+db.student.update({}, {$push:{scores:91}}, {multi: true})
+
+db.student.update({}, {$pop:{scores:-1}})
+
+db.student.update({}, {$pull:{scores:86}})
+
+
+db.student.find({scores: {$in:[22,84]}})
+db.student.find({scores: {$nin:[22,84]}})
+
+
+// wild card search 
+db.person.find({'first_name': /m/})

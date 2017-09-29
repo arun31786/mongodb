@@ -1,0 +1,79 @@
+sharding
+------------
+
+create data directories for 
+	3 shard servers 
+	1 config server
+Start shards on different ports
+Start config server
+Start the query router
+	specify the chunk size
+connect to router
+use admin privileges
+add shards
+enable sharding
+populate data to the db
+insert test data
+
+
+--------------
+
+//create shard directories
+mkdir db1
+mkdir db2
+mkdir db3
+mkdir config_db
+
+//start shard servers
+mongod --shardsvr --port 30001 --dbpath ./db1
+mongod --shardsvr --port 30002 --dbpath ./db2
+mongod --shardsvr --port 30003 --dbpath ./db3
+
+// start config server
+mongod --configsvr --port 40001 --dbpath config_db
+
+// start the query router for config server
+mongos --configdb localhost:40001 --port 40005 --chunkSize 1
+
+//mongos --configdb localhost:40001 --port'40005' --chunkSize'1'
+
+
+use ROBOMONGO to connect on localhost:40005
+or with cmd
+mongo --port 40005 --host localhost
+
+// admin privileges
+use admin
+
+
+// add shards
+db.runCommand({addshard: 'localhost:30001', 'name':'shard_one_demo'})
+
+db.runCommand({addshard: 'localhost:30002', 'name':'shard_two_demo'})
+
+db.runCommand({addshard: 'localhost:30003', 'name':'shard_three_demo'})
+
+
+// enable shard on db and in collection
+db.runCommand({enablesharding: 'person'})
+
+db.runCommand({shardcollection: 'person.details', key: {Name: 1}})
+
+
+// new db should be created successfully
+
+// populate data to db
+use person
+
+for(var i=0;i<50000;i++){
+	db.details.insert({Name: 'Hello'+i, id:i+10, annual_income: 100000+i})
+}
+
+
+// find shard details
+db.details.getShardDistribution()
+
+
+
+
+

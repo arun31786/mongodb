@@ -1,0 +1,17 @@
+db.getCollection('person').find({})
+db.getCollection('person').find({}).count()
+
+db.getCollection('person').distinct("gender")
+
+db.getCollection('person').update({}, {first_name: "Rajeev"})
+db.getCollection('person').update({id:22}, {$set:{last_name: "Rajeev"}})
+
+db.getCollection('person').find({id:{$lt:50}}).count()
+
+db.getCollection('person').update({id:{$lt:50}}, {$set:{gender:'Male'}}, {multi:true})
+
+// updateOne
+// updateMany
+
+
+

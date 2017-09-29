@@ -26,5 +26,12 @@ RoboMongo, MongoChef
 CRUD in client
 Import csv
 
+# Day 3
+more on remove
+more on update
+array selection
+array insertion
+gird fs
+sharding
 
 
